@@ -17,10 +17,10 @@ _log = logging.getLogger(__name__)
 
 
 def add_hydrogens(input_pdb_path, output_pdb_path):
-    """This requires reduce: https://github.com/rlabduke/reduce."""
+    """This requires a package to add hydrogens to pdb file"""
 
     with open(output_pdb_path, "wt", encoding = "utf-8") as f:
-        p = subprocess.run(["reduce", input_pdb_path], stdout=subprocess.PIPE, check=True)
+        p = subprocess.run(["<package_name>", input_pdb_path], stdout=subprocess.PIPE, check=True)
         for line in p.stdout.decode().split("\n"):
             f.write(line.replace("   new", "").replace("   std", "") + "\n")
 
